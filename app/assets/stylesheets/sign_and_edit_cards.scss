@@ -1,0 +1,46 @@
+
+.card {
+    width: 450px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #00B8D9;
+    margin-top: 24px;
+    box-shadow: 0 150 200px 100 rgba(198, 19, 19, 0.26);
+}
+
+a.btn.btn-back {
+    background-color: #0d0d0dd4;
+    color: #ffffffed;
+}
+
+input#user_remember_me {
+    margin-right: 10px;
+    margin-bottom: 24px;
+}
+
+.flex-fill {
+    flex: 1 1 auto;
+}
+
+.card-header, .card-footer{
+    background-color: #77eaff;
+
+}
+.card-body{
+    background-color: #ffffff;
+
+}
+
+
+login-email, login-email, login-remember, login-button{
+    margin-bottom: 16px;
+}
+
+.btn-login{
+    background-color: #b95af8;
+    color: white;
+}
+
+.link-color-signing {
+    color: black;
+}
