@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
   devise_for :users, controllers: {
-    confirmations: 'confirmations'
+    confirmations: 'confirmations',
+    registrations: 'users/registrations'
   }
 
   root 'pages#home'
