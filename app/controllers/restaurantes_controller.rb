@@ -1,9 +1,10 @@
 class RestaurantesController < ApplicationController
   before_action :set_restaurante, only: %i[ show edit update destroy ]
+  before_action :authorize_member, only: %i[ show edit update destroy ]
   #before_action :set_owner
   # GET /restaurantes or /restaurantes.json
   def index
-    @restaurantes = Restaurante.all
+    @restaurantes = current_user.restaurantes
   end
 
   # GET /restaurantes/1 or /restaurantes/1.json
@@ -24,7 +25,7 @@ class RestaurantesController < ApplicationController
     @restaurante = Restaurante.new(restaurante_params)
     respond_to do |format|
       if @restaurante.save
-        puts 'RESTAURANTE SAVED'
+        @restaurante.members.create(user: current_user, rte_role: 'Owner')
         format.html { redirect_to restaurante_url(@restaurante), notice: "Restaurante was successfully created." }
         format.json { render :show, status: :created, location: @restaurante }
       else
@@ -62,6 +63,10 @@ class RestaurantesController < ApplicationController
     def set_restaurante
       @restaurante = Restaurante.find(params[:id])
     end
+
+    def authorize_member
+      return redirect_to root_path, alert: 'No eres miembro de este Restaurante' unless @restaurante.users.include? current_user
+    end 
 
    #def set_owner
    #  return redirect_to root_path, alert: 'Lo sentimos. No tienes acceso a esta sección.' unless current_user.role == 'owner'

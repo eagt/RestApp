@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :members
   resources :restaurantes
   
   devise_for :users, controllers: {
