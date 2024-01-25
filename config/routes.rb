@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  resources :members
-  resources :restaurantes
+  
+  resources :restaurantes do 
+    resources :members do
+      collection do
+        post :invite
+      end 
+    end
+  end
   
   devise_for :users, controllers: {
     confirmations: 'confirmations',
     registrations: 'users/registrations'
   }
+
+ 
 
   root 'pages#home'
   get 'pages/dashboard'

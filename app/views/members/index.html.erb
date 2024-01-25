@@ -1,0 +1,16 @@
+<h3>Add a New Member</h3>
+
+<%= form_with url: invite_restaurante_members_path  do |form| %>
+ <%= form.text_field :email, placeholder: 'Email'%>
+  <%= form.select :rte_role, Member.rte_roles %>
+ <%= form.submit 'Invite'%>
+<% end %> 
+<br/>
+<br/>
+<br/>
+<h3>Members</h3>
+<% @members.each do |members| %>
+    <%= members.user.name %>
+    <%= members.user.email %>
+    <%= members.rte_role %>
+<% end %>
