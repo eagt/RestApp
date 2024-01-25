@@ -1,0 +1,71 @@
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Restaurante</h2>
+      </div>
+      <div class="card-body text-center">
+        <div id="<%= dom_id restaurante %>">
+          <p>
+            <strong>Name:</strong>
+            <%= restaurante.name %>
+          </p>
+        <!--
+          <p>
+            <strong>Address 1:</strong>
+            <%= restaurante.address_1 %>
+          </p>
+
+          <p>
+            <strong>Address 2:</strong>
+            <%= restaurante.address_2 %>
+          </p>
+
+          <p>
+            <strong>Post code:</strong>
+            <%= restaurante.post_code %>
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <%= restaurante.email %>
+          </p>
+
+          <p>
+            <strong>Telephone:</strong>
+            <%= restaurante.telephone %>
+          </p>
+
+          <p>
+            <strong>Mobile:</strong>
+            <%= restaurante.mobile %>
+          </p>
+
+          <p>
+            <strong>Vat:</strong>
+            <%= restaurante.VAT %>
+          </p>
+
+          <p>
+            <strong>Nit:</strong>
+            <%= restaurante.NIT %>
+          </p>
+
+          <p>
+            <strong>City:</strong>
+            <%= restaurante.city %>
+          </p>
+
+          <p>
+            <strong>Country:</strong>
+            <%= restaurante.country %>
+          </p>
+        -->
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= link_to "Edit this restaurante", edit_restaurante_path(restaurante) %> 
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,10 +10,12 @@
           <!--a class="nav-link active" aria-current="page" href="#">Home</a-->
           <%= link_to 'Home', root_path, class: "nav-link #{yield(:home_active)}" %>
         </li>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.role == 'owner' %>
           <li class="nav-item">
-            <!--%= link_to 'Restaurantes', restaurantes_path, class: "nav-link #{yield(:restaurantes_active)}" % -->
-          </li>
+            <%= link_to 'Restaurantes', restaurantes_path, class: "nav-link #{yield(:restaurantes_active)}" %>
+          </li>        
+        <% end %>
+        <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Dashboard', pages_dashboard_path, class: "nav-link #{yield(:pages_dashboard_active)}" %>
           </li>
