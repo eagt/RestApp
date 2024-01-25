@@ -37,6 +37,7 @@ input#user_remember_me {
 }
 .card-body{
     background-color: #ffffff;
+    padding-left: 24px !important;
 
 }
 
@@ -54,4 +55,9 @@ login-email, login-email, login-remember, login-button{
 
 .link-color-signing {
     color: black;
+}
+
+.bold-label{
+    font-weight: 700;
+
 }

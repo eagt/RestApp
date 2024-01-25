@@ -10,26 +10,27 @@
       <div class="card-body text-center">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-                   <div class="mb-3 row">
-            <label for="username" class="col-sm-3 col-form-label"><%= f.label :username %></label>
-            <div class="col-sm-9">
-              <%= f.text_field :username %>
-            </div>
+
+          <div class="mb-3 row">
+            <%= f.label :username, class: "col-sm-5 text-sm-start bold-label"%>
+            <div class="col-sm-7">           
+              <%= f.text_field :username %>    
+            </div>        
           </div>
           <div class="mb-3 row">
-            <label for="name" class="col-sm-3 col-form-label"><%= f.label :name %></label>
-            <div class="col-sm-9">
+            <%= f.label :name, "Nombre", class: "col-sm-5 text-sm-start bold-label" %>
+            <div class="col-sm-7">
               <%= f.text_field :name %>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="last_name" class="col-sm-3 col-form-label"><%= f.label :last_name%></label>
-            <div class="col-sm-9">
+            <%= f.label :last_name, "Apellido",class: "col-sm-5 text-sm-start bold-label"%>
+            <div class="col-sm-7">
               <%= f.text_field :last_name %>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="email" class="col-sm-5 col-form-label"><%= f.label :email %></label>
+            <%= f.label :email, class: "col-sm-5 text-sm-start bold-label" %>
             <div class="col-sm-7">
               <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             </div>
@@ -40,36 +41,37 @@
 
 <!-- Current Password -->
           <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-5 col-form-label"> <%= f.label :current_password %> <br/><i>(Needed to confirm your changes)</i></label>
+            <label for="inputPassword" class="col-sm-5 text-sm-start bold-label"><%= f.label :current_password %><br/><i>(Needed to confirm your changes)</i></label>
             <div class="col-sm-7">             
               <%= f.password_field :current_password, autocomplete: "current-password" %>
             </div>
           </div>
-          <br/>
 
 <!-- New Passwrod -->
 
           <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-5 col-form-label"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></label>
+            <label for="inputPassword" class="col-sm-5 text-sm-start bold-label"><%= f.label :password %><br/><i>(leave blank if you don't want to change it)</i></label>
             <div class="col-sm-7">
                  <%= f.password_field :password, autocomplete: "new-password" %>
                 <% if @minimum_password_length %>
-                  <br />
+                  <br/>
                    <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
             </div>
           </div>
 
 <!-- New Passwrod Confirmation-->
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-5 col-form-label"><%= f.label :password_confirmation %></label>
+          <div class="mb-3 row ">
+            <label for="inputPassword" class="col-sm-5 text-sm-start bold-label"><%= f.label :password_confirmation %></label>
             <div class="col-sm-7">
               <%= f.password_field :password_confirmation, autocomplete: "current-password" %>
             </div>
           </div>
 
 
-          <%= f.submit "Update", class: "btn btn-login" %>
+          <div class="text-center mb-4">  
+            <%= f.submit "Update", class: "btn btn-login" %>
+          </div>
         <% end %>
       </div>
       <div class="card-footer text-center pb-4">
