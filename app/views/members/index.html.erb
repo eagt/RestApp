@@ -1,15 +1,63 @@
-<h3>Add a New Member</h3>
-<%= form_with url: invite_restaurante_members_path  do |form| %>
- <%= form.text_field :email, placeholder: 'Email'%>
-  <%= form.select :rte_role, Member.rte_roles %>
- <%= form.submit 'Invite'%>
-<% end %> 
-<br/>
-<br/>
-<br/>
-<h3>Members</h3>
-<% @members.each do |members| %>
-    <%= members.user.name %>
-    <%= members.user.email %>
-    <%= members.rte_role %>
-<% end %>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card shadow mb-5 bg-body rounded">
+        <div class="card-header text-center pb-1">
+            <h3>Add a New Member</h3>
+        </div>
+        <div class="card-body text-center mt-3 mb-4">
+            <%= form_with url: invite_restaurante_members_path  do |form| %>
+                <%= form.text_field :email, placeholder: 'Email'%>
+                <%= form.select :rte_role, Member.rte_roles %>
+                <%= form.submit 'Invite'%>
+            <% end %>    
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        <br/>
+        <br/>
+        <br/>
+
+
+
+
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card-big shadow mb-5 bg-body rounded">
+      <div class="card-header text-center pb-5">
+        <h3>Members</h3>
+        <br/>
+        <%= link_to "Show Restaurante", restaurante_path(@current_restaurante) %>
+      </div>
+      <table class="table table-hover">
+        <div id="restaurantes">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Accepted</th>
+              <th> </th>             
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |member| %>  
+              <tr>
+                <td> <%= member.user.name %></td>
+                <td> <%= member.user.email %></td>
+                <td> <%= member.rte_role %></td>
+                <td> <%= member.user.invitation_accepted? %></td>
+                <td> <%#= member.rte_role %></td>
+                <td> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </div>
+      </table>
+    </div>
+  </div>
+</div>

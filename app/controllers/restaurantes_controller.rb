@@ -1,7 +1,7 @@
 class RestaurantesController < ApplicationController
   before_action :set_restaurante, only: %i[ show edit update destroy ]
   before_action :authorize_member, only: %i[ show edit update destroy ]
-  #before_action :set_owner
+  before_action :set_owner
   # GET /restaurantes or /restaurantes.json
   def index
     @restaurantes = current_user.restaurantes
@@ -24,14 +24,16 @@ class RestaurantesController < ApplicationController
   def create
     @restaurante = Restaurante.new(restaurante_params)
     respond_to do |format|
-      if @restaurante.save
-        @restaurante.members.create(user: current_user, rte_role: 'Owner')
-        format.html { redirect_to restaurante_url(@restaurante), notice: "Restaurante was successfully created." }
-        format.json { render :show, status: :created, location: @restaurante }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @restaurante.errors, status: :unprocessable_entity }
-      end
+      
+        if @restaurante.save
+          @restaurante.members.create(user: current_user) #, role: 'owner'
+          format.html { redirect_to restaurante_url(@restaurante), notice: "Restaurante was successfully created." }
+          format.json { render :show, status: :created, location: @restaurante }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @restaurante.errors, status: :unprocessable_entity }
+        end
+      
     end
   end
 

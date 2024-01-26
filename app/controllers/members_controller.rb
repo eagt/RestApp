@@ -1,7 +1,7 @@
 class MembersController < AuthorizedController
 
     def index 
-        @members = @current_restaurante.members.all
+        @members = @current_restaurante.members.all        
     end
     def invite
         email = params[:email]
