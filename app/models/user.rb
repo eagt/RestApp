@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  has_many  :members
-  has_many  :restaurantes, through: :members     
+  before_create :set_owner
+
+  has_many  :members, dependent: :destroy
+  has_many  :restaurantes, through: :members  
+  
+  private
+  def set_owner    
+    unless self.created_by_invite?
+      self.role = 'owner'
+    end
+  end
 end
