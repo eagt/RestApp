@@ -1,13 +1,12 @@
 <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="card w-50 shadow mb-5 bg-body rounded">
+    <div class="card w-auto shadow mb-5 bg-body rounded">
       <div class="card-header text-center pb-1">
         <h3>Add a New Member</h3>
       </div>
       <div class="card-body text-center mt-3 mb-4">
-         <div  class="row g-3 align-items-center">
-          <%= form_with url: invite_restaurante_members_path  do |form| %>
-          <div  class="row g-3">
+        <%= form_with url: invite_restaurante_members_path  do |form| %>
+          <div  class="row g-3 align-items-center">
             <div class="col-auto">
               <%= form.text_field :email, placeholder: 'Email'%>
             </div>
@@ -17,15 +16,15 @@
             <div class="col-auto">
               <%= form.submit 'Invite', class: "btn btn-login"%>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
   <br/>
   <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
     <div class="row h-100 justify-content-center align-items-center">
-      <div class="card w-50 shadow mb-5 bg-body rounded">
+      <div class="card card_index shadow mb-5 bg-body rounded">
         <div class="card-header text-center pb-3">
           <h3>Members</h3>
           <br/>
@@ -41,7 +40,6 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Accepted</th>
-                <th> </th>
               </tr>
             </thead>
             <tbody>
@@ -51,8 +49,6 @@
                   <td> <%= member.user.email %></td>
                   <td> <%= member.rte_role.capitalize %></td>
                   <td> <%= member.user.invitation_accepted? %></td>
-                  <td> <%#= member.rte_role %></td>
-                  <td> </td>
                 </tr>
               <% end %>
             </tbody>
