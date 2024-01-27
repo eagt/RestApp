@@ -1,7 +1,8 @@
 class RestaurantesController < ApplicationController
   before_action :set_restaurante, only: %i[ show edit update destroy ]
   before_action :authorize_member, only: %i[ show edit update destroy ]
-  before_action :set_owner
+  #before_action :set_owner
+  
   # GET /restaurantes or /restaurantes.json
   def index
     @restaurantes = current_user.restaurantes
@@ -70,11 +71,11 @@ class RestaurantesController < ApplicationController
       return redirect_to root_path, alert: 'No eres miembro de este Restaurante' unless @restaurante.users.include? current_user
     end 
 
-   def set_owner
-    if current_user.role == 'owner'
-      @owner = current_user
-    end
-   end
+  #def set_owner
+  # if current_user.role == 'owner'
+  #   @owner = current_user
+  # end
+  #end
 
     # Only allow a list of trusted parameters through.
     def restaurante_params

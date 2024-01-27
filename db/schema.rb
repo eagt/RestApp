@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_25_151056) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_110515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_151056) do
     t.datetime "updated_at", null: false
     t.index ["restaurante_id"], name: "index_members_on_restaurante_id"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "qty_measurement", precision: 10
+    t.string "unit_measurement"
+    t.text "description"
+    t.decimal "buying_cost_pck", precision: 10
+    t.decimal "buying_cost_unit", precision: 10
+    t.decimal "selling_cost_pck", precision: 10
+    t.decimal "selling_cost_unit", precision: 10
+    t.decimal "production_cost", precision: 10
+    t.decimal "qty_to_stock", precision: 10
+    t.decimal "qty_in_stock", precision: 10
+    t.string "current_stock_value"
+    t.string "created_by"
+    t.bigint "restaurante_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurante_id"], name: "index_products_on_restaurante_id"
   end
 
   create_table "restaurantes", force: :cascade do |t|
@@ -73,4 +93,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_151056) do
 
   add_foreign_key "members", "restaurantes"
   add_foreign_key "members", "users"
+  add_foreign_key "products", "restaurantes"
 end
