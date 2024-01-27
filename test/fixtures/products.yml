@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  qty-measurement: 9.99
+  unit_measurement: MyString
+  description: MyText
+  buying_cost_pck: 9.99
+  buying_cost_unit: 9.99
+  selling_cost_pck: 9.99
+  selling_cost_unit: 9.99
+  production_cost: 9.99
+  qty_to_stock: 9.99
+  qty_in_stock: 9.99
+  current_stock_value: MyString
+  decimal{10-0}: MyString
+  created_by: MyString
+  restaurante: one
+
+two:
+  name: MyString
+  qty-measurement: 9.99
+  unit_measurement: MyString
+  description: MyText
+  buying_cost_pck: 9.99
+  buying_cost_unit: 9.99
+  selling_cost_pck: 9.99
+  selling_cost_unit: 9.99
+  production_cost: 9.99
+  qty_to_stock: 9.99
+  qty_in_stock: 9.99
+  current_stock_value: MyString
+  decimal{10-0}: MyString
+  created_by: MyString
+  restaurante: two

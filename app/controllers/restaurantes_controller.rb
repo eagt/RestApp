@@ -1,7 +1,9 @@
 class RestaurantesController < ApplicationController
   before_action :set_restaurante, only: %i[ show edit update destroy ]
   before_action :authorize_member, only: %i[ show edit update destroy ]
-  before_action :set_owner
+  before_action :set_authorised_inviter, only: %i[ new destroy edit update ]
+  #before_action :set_owner
+  
   # GET /restaurantes or /restaurantes.json
   def index
     @restaurantes = current_user.restaurantes
@@ -70,14 +72,17 @@ class RestaurantesController < ApplicationController
       return redirect_to root_path, alert: 'No eres miembro de este Restaurante' unless @restaurante.users.include? current_user
     end 
 
-   def set_owner
-    if current_user.role == 'owner'
-      @owner = current_user
-    end
-   end
+  #def set_owner
+  # if current_user.role == 'owner'
+  #   @owner = current_user
+  # end
+  #end
 
     # Only allow a list of trusted parameters through.
     def restaurante_params
       params.require(:restaurante).permit(:name, :address_1, :address_2, :post_code, :email, :telephone, :mobile, :VAT, :NIT, :city, :country)
     end
+    def set_authorised_inviter
+      return redirect_to root_path, alert: "Pagina solo para Administradores" unless current_user&.role == 'owner'
+  end
 end

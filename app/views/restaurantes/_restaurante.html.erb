@@ -63,13 +63,13 @@
         -->
         </div>
       </div>
-      <div class="card-footer text-center">
-        <%= link_to "Edit this restaurante", edit_restaurante_path(restaurante) %> 
-      
-      <br/>
-      
-        <%= link_to "Members", restaurante_members_path(@restaurante) %> 
-      </div>
+      <% if current_user&.role == 'owner' %>
+        <div class="card-footer text-center">
+          <%= link_to "Edit this restaurante", edit_restaurante_path(restaurante) %>       
+        <br/>      
+          <%= link_to "Members", restaurante_members_path(@restaurante) %> 
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

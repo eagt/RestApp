@@ -1,7 +1,9 @@
 <!-- <p style="color: green"><%= notice %></p> -->
 <div>
-  <%#= link_to "Edit this restaurante", edit_restaurante_path(@restaurante) %> |
-  <%= link_to "Back to restaurantes", restaurantes_path %>
+  <%#= link_to "Edit this restaurante", edit_restaurante_path(@restaurante) %> 
+  <% if current_user&.role == 'owner' %>
+    <%= link_to "Back to restaurantes", restaurantes_path %>
+  <% end %>
 </div>
 <br/>
 <%= render @restaurante %>
@@ -9,6 +11,7 @@
 <div>
  <!--  <%#= link_to "Edit this restaurante", edit_restaurante_path(@restaurante) %> (XA BORRAR: aqui tienen el "@restaurante", cuando ya se monta en la card es solo "restaurante") |
   <%#= link_to "Back to restaurantes", restaurantes_path %> -->
-
+<% if current_user&.role == 'owner' %>
   <%= button_to "Borrar Restaurante", @restaurante, method: :delete, class: 'btn btn-login mt-5 mb-5 ml-3' %>
+<% end %>
 </div>

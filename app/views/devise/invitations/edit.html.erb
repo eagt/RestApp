@@ -1,0 +1,37 @@
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card  card-login shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2><%= t "devise.invitations.edit.header" %></h2>
+      </div>
+      <div class="card-body text-center">
+        <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :invitation_token, readonly: true %>
+          <% if f.object.class.require_password_on_accepting %>
+            <div class="mb-3 row">
+              <label for="inputPassword" class="col-sm-4 col-form-label"><%= f.label :password, "Password" %></label>
+              <div class="col-sm-8">
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autofocus: true %>
+              </div>
+            </div>
+            <br/>
+            <div class="mb-3 row">
+              <label for="inputPassword" class="col-sm-4 col-form-label"><%= f.label :password_confirmation, "Confirm password" %></label>
+              <div class="col-sm-8">
+                <%= f.password_field :password_confirmation, autocomplete: "Confirm password" %>
+              </div>
+            </div>
+          <% end %>
+          <div class="actions">
+            <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-login" %>
+          </div>
+        <% end %>   
+      </div>   
+      <div class="card-footer text-center mt-4 pb-4"></div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   
   resources :restaurantes do 
     resources :members do
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
         post :invite
       end 
     end
+    resources :products
   end
   
   devise_for :users, controllers: {

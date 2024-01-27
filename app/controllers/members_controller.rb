@@ -1,5 +1,7 @@
 class MembersController < AuthorizedController
 
+        before_action :set_authorised_inviter
+
     def index 
         @members = @current_restaurante.members.all        
     end
@@ -16,4 +18,10 @@ class MembersController < AuthorizedController
         
         redirect_to restaurante_members_path(@current_restaurante), notice: "Usuario con email #{email} ha sido invitado!"      
     end 
+
+    private
+
+    def set_authorised_inviter
+        return redirect_to root_path, alert: "Pagina solo para Administradores" unless current_user&.role == 'owner'
+    end
 end
