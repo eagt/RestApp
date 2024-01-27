@@ -1,6 +1,6 @@
 
 .card {
-    width: 450px;
+
     padding-left: 0;
     padding-right: 0;
     background-color: #00B8D9;
@@ -8,6 +8,14 @@
     box-shadow: 0 150 200px 100 rgba(198, 19, 19, 0.26);
 }
 
+.card-login {
+    width: 450px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #00B8D9;
+    margin-top: 24px;
+    box-shadow: 0 150 200px 100 rgba(198, 19, 19, 0.26);
+}
 .card_index {
     max-width: 315px;
     max-width: 750px;
@@ -49,8 +57,8 @@ login-email, login-email, login-remember, login-button{
 .btn-login{
     background-color: #b95af8;
     color: white;
-    margin-left: 50px;
-    margin-right: 50px;
+    //margin-left: 50px;
+    //margin-right: 50px;
 }
 
 .link-color-signing {
