@@ -13,12 +13,17 @@
   <% end %>
 </div>-->
 
-<%= link_to "New restaurante", new_restaurante_path %>
+<%#= link_to "New restaurante", new_restaurante_path %>
 <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="card shadow mb-5 bg-body rounded">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
       <div class="card-header text-center">
         <h3>Restaurantes</h3>
+      
+      <br/>
+      <div class='pb-3'>
+        <%= link_to "New restaurante", new_restaurante_path %>
+      </div>
       </div>
       <table class="table table-hover">
         <div id="restaurantes">   

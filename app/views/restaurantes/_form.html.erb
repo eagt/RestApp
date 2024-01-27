@@ -1,6 +1,6 @@
 <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="card shadow mb-5 bg-body rounded">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
       <div class="card-header text-center">
         <h2>Restaurante</h2>
       </div>
@@ -19,8 +19,8 @@
           </div>
         <% end %>
         <div class="form-group row mb-3">        
-          <%= form.label :name, "Nombre", class: 'col-sm-3 col-form-label' %>
-          <%= form.text_field :name, class: "col-sm-9" %>    
+          <%= form.label :name, "Nombre", class: 'col-sm-4 col-form-label' %>
+          <%= form.text_field :name, class: "col-sm-8" %>    
         </div>
         <!-- <div class="form-group row mb-3">        
           <%= form.label :address_1, "Dirección 1", class: 'col-sm-3 col-form-label' %>
@@ -64,9 +64,9 @@
           <%= form.text_field :NIT, class: "col-sm-9" %>    
         </div>          -->                                
         <% if action_name == 'edit' %>
-          <%= form.submit 'Update Restaurante', class: 'btn btn-login mt-5 mb-5 ml-3' %>
+          <%= form.submit 'Update Restaurante', class: 'btn btn-login mt-3 mb-5 ml-3' %>
         <% else %>
-          <%= form.submit 'Crear Restaurante', class: 'btn btn-login mt-5 mb-5 ml-3' %>
+          <%= form.submit 'Crear Restaurante', class: 'btn btn-login mt-3 mb-5 ml-3' %>
         <% end %>
         </div>        
       <% end %>
