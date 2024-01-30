@@ -1,0 +1,10 @@
+
+<%= render @table %>
+
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center"> 
+  <% if current_user&.role == 'owner' %>
+    <%= button_to "Borrar Mesa", restaurante_table_path(@restaurante, @table), method: :delete, class: 'btn btn-login mt-5 mb-5 ml-3' %>
+  <% end %>
+  </div>  
+</div>

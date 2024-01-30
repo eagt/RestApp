@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :restaurantes do 
     resources :members do
       collection do
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
       end 
     end
     resources :products
+    resources :tables
   end
   
   devise_for :users, controllers: {

@@ -1,0 +1,33 @@
+
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Producto </h2>
+      </div>
+      <div class="card-body text-center">
+        <div id="<%= dom_id table %>">
+          <p>
+            <strong>Number:</strong>
+            <%= table.number %>
+          </p>
+          <p>
+            <strong>Restaurante:</strong>
+            <%= table.restaurante_id %>
+          </p>
+          <p>
+            <strong>Status:</strong>
+            <%= table.status %>
+          </p>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <% if current_user&.role == 'owner' %>
+          <%= link_to "Editar", edit_restaurante_table_path(@restaurante, @table) %>
+          <br/>
+          <%= link_to "Mesas", restaurante_tables_path(@restaurante) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
