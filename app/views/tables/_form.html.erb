@@ -1,0 +1,51 @@
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Mesa</h2>
+      </div>
+      <div class="card-body text-center">
+          <%= form_with(model: [@restaurante, @table], local: true) do |form| %>
+          <% if table.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(table.errors.count, "error") %> prohibited this table from being saved:</h2>
+
+              <ul>
+                <% table.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group row mb-3">
+            <%= form.label :number, 'Numero', class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :number, class: "col-sm-7" %>
+          </div>
+          <div class="form-group row mb-3">
+            <div class="col-sm-5 bold-label"> 
+              <%= form.label :status, 'Estado' %>  
+            </div> 
+            <div class="col-sm-7">        
+              <%= form.select :status, Table.statuses %>
+            </div>
+          </div>
+          <% if action_name == 'edit' %>
+            <%= form.submit 'Actualizar Mesa', class: 'btn btn-login' %>
+          <% else %>
+            <%= form.submit class: 'btn btn-login' %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-footer text-center pb-2">
+        <div>
+          <%= link_to "Show Product",restaurante_table_path(@restaurante, @table) if action_name == 'edit' %>
+        </div>
+        <div>
+          <%= link_to "Mesas", restaurante_tables_path(@restaurante) %>
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>

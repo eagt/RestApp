@@ -5,6 +5,7 @@ class Restaurante < ApplicationRecord
     has_many  :members, dependent: :destroy 
     has_many  :users, through: :members   
     has_many :products, dependent: :destroy 
+    has_many :tables, dependent: :destroy 
        
 end
 

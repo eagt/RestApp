@@ -2,32 +2,29 @@
   <div class="row h-100 justify-content-center align-items-center">
     <div class="card card_index shadow mb-5 bg-body rounded">
       <div class="card-header text-center pb-4">
-        <h3>Productos</h3>      
+        <h3>Tables</h3>      
         <br/>
         <% if current_user&.role == 'owner' %>       
             <%= link_to "Restaurante", restaurante_path(@restaurante) %>  |  
-            <%= link_to "Nuevo Producto", new_restaurante_product_path(@restaurante) %>      
+            <%= link_to "Nueva Mesa", new_restaurante_table_path(@restaurante) %>      
         <% end %>
       </div>
-
-
       <table class="table table-hover">
         <div id="products">  
           <thead class="thead-dark">
             <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
+              <th>Numero</th>
+              <th>Status</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-          <% @restaurante.products.each do |product| %>
+          <% @restaurante.tables.each do |table| %>
             <tr>
-              <td><%= product.name %></td>
-              <td><%= product.selling_cost_unit %></td>
-              <td><%= link_to "Ver", restaurante_product_path(@restaurante, product) %> | 
-              <%= link_to "Borrar", restaurante_product_path(@restaurante, product), method: :delete %></td>
-
+              <td><%= table.number %></td>
+              <td><%= table.status %></td>
+              <td><%= link_to "Ver", restaurante_table_path(@restaurante, table) %> | 
+              <%= link_to "Borrar", restaurante_table_path(@restaurante, table), method: :delete %></td>
             </tr>
           <% end %>
           </tbody>
