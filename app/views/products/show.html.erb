@@ -1,10 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<!-- <p style="color: green"><%= notice %></p> -->
 
 <%= render @product %>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center"> 
+  <% if current_user&.role == 'owner' %>
+    <%= button_to "Borrar Producto", restaurante_product_path(@restaurante, @product), method: :delete, class: 'btn btn-login mt-5 mb-5 ml-3' %>
+  <% end %>
+  </div>  
 </div>
+
+<!-- 
+<div>
+  <%= link_to "Edit this product", edit_restaurante_product_path(@restaurante, @product) %> |
+  <%= link_to "Back to products", restaurante_products_path(@restaurante) %>
+
+  <%= button_to "Destroy this product", restaurante_product_path(@restaurante, @product), method: :delete %>
+</div>  -->

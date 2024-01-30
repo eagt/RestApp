@@ -1,77 +1,79 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Producto </h2>
+      </div>
+      <div class="card-body text-center">
+        <div id="<%= dom_id product %>">
+          <p>
+            <strong>Name:</strong>
+            <%= product.name %>
+          </p>
+          <p>
+            <strong>Precio:</strong>
+            <%= product.selling_cost_unit %>
+          </p>
+          <!-- 
+          <p>
+            <strong>Qty-measurement:</strong>
+            <%= product.qty_measurement %>
+          </p>
+          <p>
+            <strong>Unit measurement:</strong>
+            <%= product.unit_measurement %>
+          </p>
+          <p>
+            <strong>Description:</strong>
+            <%= product.description %>
+          </p>
+          <p>
+            <strong>Buying cost pck:</strong>
+            <%= product.buying_cost_pck %>
+          </p>
+          <p>
+            <strong>Buying cost unit:</strong>
+            <%= product.buying_cost_unit %>
+          </p>
+          <p>
+            <strong>Selling cost pck:</strong>
+            <%= product.selling_cost_pck %>
+          </p>
+          
+          <p>
+            <strong>Precio:</strong>
+            <%= product.selling_cost_unit %>
+          </p>
 
-  <p>
-    <strong>Qty-measurement:</strong>
-    <%= product.qty-measurement %>
-  </p>
-
-  <p>
-    <strong>Unit measurement:</strong>
-    <%= product.unit_measurement %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <p>
-    <strong>Buying cost pck:</strong>
-    <%= product.buying_cost_pck %>
-  </p>
-
-  <p>
-    <strong>Buying cost unit:</strong>
-    <%= product.buying_cost_unit %>
-  </p>
-
-  <p>
-    <strong>Selling cost pck:</strong>
-    <%= product.selling_cost_pck %>
-  </p>
-
-  <p>
-    <strong>Selling cost unit:</strong>
-    <%= product.selling_cost_unit %>
-  </p>
-
-  <p>
-    <strong>Production cost:</strong>
-    <%= product.production_cost %>
-  </p>
-
-  <p>
-    <strong>Qty to stock:</strong>
-    <%= product.qty_to_stock %>
-  </p>
-
-  <p>
-    <strong>Qty in stock:</strong>
-    <%= product.qty_in_stock %>
-  </p>
-
-  <p>
-    <strong>Current stock value:</strong>
-    <%= product.current_stock_value %>
-  </p>
-
-  <p>
-    <strong>Decimal{10-0}:</strong>
-    <%= product.decimal{10-0} %>
-  </p>
-
-  <p>
-    <strong>Created by:</strong>
-    <%= product.created_by %>
-  </p>
-
-  <p>
-    <strong>Restaurante:</strong>
-    <%= product.restaurante_id %>
-  </p>
-
+          <p>
+            <strong>Production cost:</strong>
+            <%= product.production_cost %>
+          </p>
+          <p>
+            <strong>Qty to stock:</strong>
+            <%= product.qty_to_stock %>
+          </p>
+          <p>
+            <strong>Qty in stock:</strong>
+            <%= product.qty_in_stock %>
+          </p>
+          <p>
+            <strong>Current stock value:</strong>
+            <%= product.current_stock_value %>
+          </p>
+          <p>
+            <strong>Created by:</strong>
+            <%= product.created_by %>
+          </p>  -->
+        </div>
+        </div>
+      <div class="card-footer text-center">
+        <% if current_user&.role == 'owner' %>          
+            <%= link_to "Editar", edit_restaurante_product_path(@restaurante, @product) %>
+            <br/>
+            <%= link_to "Productos", restaurante_products_path(@restaurante) %>            
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

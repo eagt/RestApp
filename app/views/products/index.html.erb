@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card card_index shadow mb-5 bg-body rounded">
+      <div class="card-header text-center pb-4">
+        <h3>Productos</h3>      
+      <br/>
+      <% if current_user&.role == 'owner' %>       
+          <%= link_to "Restaurante", restaurante_path(@restaurante) %>  |  
+          <%= link_to "New product", new_restaurante_product_path(@restaurante) %>      
+      <% end %>
+      </div>
+      <table class="table table-hover">
+        <div id="products">  
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @restaurante.products.each do |product| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.selling_cost_unit %></td>
+              <td><%= link_to "Ver", restaurante_product_path(@restaurante, product) %> | 
+              <%= link_to "Borrar", restaurante_product_path(@restaurante, product), method: :delete %></td>
 
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
+            </tr>
+          <% end %>
+          </tbody>
+        </div>
+      </table>
+       <div class="card-footer text-center pb-3"><br/></div>
+      </div>  
+    </div>
+  </div>
 </div>
-
-<%= link_to "New product", new_product_path %>

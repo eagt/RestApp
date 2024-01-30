@@ -11,7 +11,10 @@
 <div>
  <!--  <%#= link_to "Edit this restaurante", edit_restaurante_path(@restaurante) %> (XA BORRAR: aqui tienen el "@restaurante", cuando ya se monta en la card es solo "restaurante") |
   <%#= link_to "Back to restaurantes", restaurantes_path %> -->
-<% if current_user&.role == 'owner' %>
-  <%= button_to "Borrar Restaurante", @restaurante, method: :delete, class: 'btn btn-login mt-5 mb-5 ml-3' %>
-<% end %>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center"> 
+  <% if current_user&.role == 'owner' %>
+    <%= button_to "Borrar Restaurante", @restaurante, method: :delete, class: 'btn btn-login mt-5 mb-5 ml-3', data: { confirm: 'Si lo borras perderas toda la informacion en este restaurante y incluyendo sus usuarios?' } %>
+  <% end %>
+  </div>  
 </div>

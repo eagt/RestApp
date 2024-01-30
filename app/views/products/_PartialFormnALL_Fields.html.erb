@@ -1,0 +1,107 @@
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card w-75 shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Producto</h2>
+      </div>
+      <div class="card-body text-center">
+        <%= form_with(model: [@restaurante, @product], local: true) do |form| %>
+          <% if product.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+              <ul>
+                <% product.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          
+          <div class="form-group row mb-3"> 
+              <%= form.label :name, 'Nombre', class: 'col-sm-5 bold-label' %>            
+              <%= form.text_field :name, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+              <%= form.label :selling_cost_unit, 'Precio', class: 'col-sm-5 bold-label' %>
+              <%= form.text_field :selling_cost_unit, class: "col-sm-7" %>
+          </div>
+          <!-- <div class="form-group row mb-3"> 
+            <%= form.label :qty_measurement, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :qty_measurement, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :unit_measurement, class: 'col-sm-5 bold-label'%>
+            <%= form.text_field :unit_measurement, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :description, class: 'col-sm-5 bold-label'%>
+            <%= form.text_area :description, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :buying_cost_pck, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :buying_cost_pck, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :buying_cost_unit, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :buying_cost_unit, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :selling_cost_pck, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :selling_cost_pck, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :selling_cost_unit, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :selling_cost_unit, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :production_cost, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :production_cost, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :qty_to_stock, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :qty_to_stock, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :qty_in_stock, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :qty_in_stock, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :current_stock_value, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :current_stock_value, class: "col-sm-7" %>
+          </div>
+
+          <div class="form-group row mb-3"> 
+            <%= form.label :created_by, class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :created_by, class: "col-sm-7" %>
+          </div>-->       
+
+        <% if action_name == 'edit' %>
+          <%= form.submit 'Actualizar Producto', class: 'btn btn-login' %>
+        <% else %>
+          <%= form.submit 'Crear Producto', class: 'btn btn-login' %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="card-footer text-center pb-2">
+    
+    <div>
+      <%= link_to "Show Product",restaurante_product_path(@restaurante, @product) if action_name == 'edit' %>
+    </div>
+    <div>
+      <%= link_to "Products", restaurante_products_path(@restaurante) %>
+    </div>
+      <br/>
+    </div>
+  </div>
+</div>
