@@ -1,19 +1,3 @@
-<!-- <p style="color: green"><%= notice %></p> -->
-<!--
-<h1>Restaurantes</h1>
-<br/>
-<br/>
-<%#= link_to "New restaurante", new_restaurante_path %>
-<br/>
-<br/>
-<div id="restaurantes">
-  <% @restaurantes.each do |restaurante| %>
-    <%#= render restaurante %> 
-     <%#= link_to "Show this restaurante", restaurante %> 
-  <% end %>
-</div>-->
-
-<%#= link_to "New restaurante", new_restaurante_path %>
 <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
   <div class="row h-100 justify-content-center align-items-center">
     <div class="card card_index shadow mb-5 bg-body rounded">
@@ -32,13 +16,15 @@
             <tr>
               <th>Nombre</th>
               <th>Acciones</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
           <% @restaurantes.each do |restaurante| %>
             <tr>
               <td><%= restaurante.name %></td>
-              <td><%= link_to "Show", restaurante %> </td>
+              <td><%= link_to "Ver", restaurante %> </td>
+              <td><%= link_to "Borrar", restaurante, method: :delete, data: { confirm: 'Si lo borras perderas toda la informacion en este restaurante y incluyendo sus usuarios?' }, class: 'delete-link' %></td>
             </tr>
           <% end %>
           </tbody>

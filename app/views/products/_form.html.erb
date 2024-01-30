@@ -1,92 +1,45 @@
-<%= form_with(model: product) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-      <ul>
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card w-50 shadow mb-5 bg-body rounded">
+      <div class="card-header text-center">
+        <h2>Producto</h2>
+      </div>
+      <div class="card-body text-center">
+        <%= form_with(model: [@restaurante, @product], local: true) do |form| %>
+          <% if product.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+              <ul>
+                <% product.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group row mb-3">
+            <%= form.label :name, 'Nombre', class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :name, class: "col-sm-7" %>
+          </div>
+          <div class="form-group row mb-3">
+            <%= form.label :selling_cost_unit, 'Precio', class: 'col-sm-5 bold-label' %>
+            <%= form.text_field :selling_cost_unit, class: "col-sm-7" %>
+          </div>
+          <% if action_name == 'edit' %>
+            <%= form.submit 'Actualizar Producto', class: 'btn btn-login' %>
+          <% else %>
+            <%= form.submit class: 'btn btn-login' %>
+          <% end %>
         <% end %>
-      </ul>
+      </div>
+      <div class="card-footer text-center pb-2">
+        <div>
+          <%= link_to "Show Product",restaurante_product_path(@restaurante, @product) if action_name == 'edit' %>
+        </div>
+        <div>
+          <%= link_to "Products", restaurante_products_path(@restaurante) %>
+        </div>
+        <br/>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
   </div>
-
-  <div>
-    <%= form.label :qty-measurement, style: "display: block" %>
-    <%= form.text_field :qty-measurement %>
-  </div>
-
-  <div>
-    <%= form.label :unit_measurement, style: "display: block" %>
-    <%= form.text_field :unit_measurement %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :buying_cost_pck, style: "display: block" %>
-    <%= form.text_field :buying_cost_pck %>
-  </div>
-
-  <div>
-    <%= form.label :buying_cost_unit, style: "display: block" %>
-    <%= form.text_field :buying_cost_unit %>
-  </div>
-
-  <div>
-    <%= form.label :selling_cost_pck, style: "display: block" %>
-    <%= form.text_field :selling_cost_pck %>
-  </div>
-
-  <div>
-    <%= form.label :selling_cost_unit, style: "display: block" %>
-    <%= form.text_field :selling_cost_unit %>
-  </div>
-
-  <div>
-    <%= form.label :production_cost, style: "display: block" %>
-    <%= form.text_field :production_cost %>
-  </div>
-
-  <div>
-    <%= form.label :qty_to_stock, style: "display: block" %>
-    <%= form.text_field :qty_to_stock %>
-  </div>
-
-  <div>
-    <%= form.label :qty_in_stock, style: "display: block" %>
-    <%= form.text_field :qty_in_stock %>
-  </div>
-
-  <div>
-    <%= form.label :current_stock_value, style: "display: block" %>
-    <%= form.text_field :current_stock_value %>
-  </div>
-
-  <div>
-    <%= form.label :decimal{10-0}, style: "display: block" %>
-    <%= form.text_field :decimal{10-0} %>
-  </div>
-
-  <div>
-    <%= form.label :created_by, style: "display: block" %>
-    <%= form.text_field :created_by %>
-  </div>
-
-  <div>
-    <%= form.label :restaurante_id, style: "display: block" %>
-    <%= form.text_field :restaurante_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
