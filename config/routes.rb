@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  
+
+
+
   resources :restaurantes do 
+    member do
+      get 'sell'  # This will create a route for the custom action in the posts controller
+    end
     resources :members do
       collection do
         post :invite

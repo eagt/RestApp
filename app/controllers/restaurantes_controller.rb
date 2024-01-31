@@ -1,6 +1,6 @@
 class RestaurantesController < ApplicationController
-  before_action :set_restaurante, only: %i[ show edit update destroy ]
-  before_action :authorize_member, only: %i[ show edit update destroy ]
+  before_action :set_restaurante, only: %i[ show edit update destroy sell]
+  before_action :authorize_member, only: %i[ show edit update destroy sell ]
   before_action :set_authorised_inviter, only: %i[ new destroy edit update ]
   #before_action :set_owner
   
@@ -62,6 +62,10 @@ class RestaurantesController < ApplicationController
     end
   end
 
+  def sell
+    @tables = @restaurante.tables
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurante
@@ -71,6 +75,10 @@ class RestaurantesController < ApplicationController
     def authorize_member
       return redirect_to root_path, alert: 'No eres miembro de este Restaurante' unless @restaurante.users.include? current_user
     end 
+
+    def set_tables
+      @tables = @restaurante.tables
+    end
 
   #def set_owner
   # if current_user.role == 'owner'

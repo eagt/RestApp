@@ -11,8 +11,20 @@
             <%= product.name %>
           </p>
           <p>
-            <strong>Precio:</strong>
-            <%= product.selling_cost_unit %>
+            <strong>Precio Compra Paquete - S:</strong>
+            <%= number_to_currency(product.buying_cost_pck, precision: 0, delimiter: ".") %>
+          </p>
+          <p>
+            <strong>Precio de Produccion - D :</strong>
+            <%= number_to_currency(product.production_cost, precision: 0, delimiter: ".") %>
+          </p>
+          <p>
+            <strong>Precio de Venta - I:</strong>
+            <%= number_to_currency(product.selling_cost_unit, precision: 0, delimiter: ".") %>
+          </p>
+          <p>
+            <strong>Tipo de Producto:</strong>
+            <%= product.product_type %>
           </p>
           <!-- 
           <p>
