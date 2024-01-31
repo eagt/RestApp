@@ -26,17 +26,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_080913) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.decimal "qty_measurement", precision: 10
+    t.decimal "qty_measurement", precision: 10, scale: 1
     t.string "unit_measurement"
     t.text "description"
-    t.decimal "buying_cost_pck", precision: 10
-    t.decimal "buying_cost_unit", precision: 10
-    t.decimal "selling_cost_pck", precision: 10
-    t.decimal "selling_cost_unit", precision: 10
-    t.decimal "production_cost", precision: 10
-    t.decimal "qty_to_stock", precision: 10
-    t.decimal "qty_in_stock", precision: 10
-    t.string "current_stock_value"
+    t.string "product_type"
+    t.integer "buying_cost_pck"
+    t.integer "selling_cost_unit"
+    t.integer "buying_cost_unit"
+    t.integer "selling_cost_pck"
+    t.integer "production_cost"
+    t.integer "qty_to_stock"
+    t.integer "qty_in_stock"
+    t.integer "current_stock_value"
     t.string "created_by"
     t.bigint "restaurante_id", null: false
     t.datetime "created_at", null: false

@@ -1,6 +1,6 @@
 <div class="container h-100 mt-12">  <!-- This div and the one below will do center the card -->
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="card card_index shadow mb-5 bg-body rounded">
+    <div class="card card_index w-75 shadow mb-5 bg-body rounded">
       <div class="card-header text-center pb-4">
         <h3>Productos</h3>      
         <br/>
@@ -10,29 +10,36 @@
         <% end %>
       </div>
 
+      <div class="card-body pl-54 pr-4">
+        <table class="table table-hover">
+          <div id="products">  
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Tipo de Alimento</th>
+                <th>Costo x Paquete-S </th>              
+                <th>Precio de Produccion - D</th>
+                <th>Precio de Venta-I</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @restaurante.products.each do |product| %>
+              <tr>
+                <td><%= product.name %></td>
+                <td><%= product.product_type %></td>
+                <td><%= number_to_currency(product.buying_cost_pck, precision: 0, delimiter: ".") %></td>
+                <td><%= number_to_currency(product.production_cost, precision: 0, delimiter: ".") %></td>
+                <td><%= number_to_currency(product.selling_cost_unit, precision: 0, delimiter: ".") %></td>              
+                <td><%= link_to "Ver", restaurante_product_path(@restaurante, product) %> | 
+                <%= link_to "Borrar", restaurante_product_path(@restaurante, product), method: :delete %></td>
 
-      <table class="table table-hover">
-        <div id="products">  
-          <thead class="thead-dark">
-            <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @restaurante.products.each do |product| %>
-            <tr>
-              <td><%= product.name %></td>
-              <td><%= product.selling_cost_unit %></td>
-              <td><%= link_to "Ver", restaurante_product_path(@restaurante, product) %> | 
-              <%= link_to "Borrar", restaurante_product_path(@restaurante, product), method: :delete %></td>
-
-            </tr>
-          <% end %>
-          </tbody>
-        </div>
-      </table>
+              </tr>
+            <% end %>
+            </tbody>
+          </div>
+        </table>
+      </div>
        <div class="card-footer text-center pb-3"><br/></div>
       </div>  
     </div>

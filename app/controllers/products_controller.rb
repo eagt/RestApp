@@ -64,6 +64,6 @@ class ProductsController < AuthorizedController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :qty_measurement, :unit_measurement, :description, :buying_cost_pck, :buying_cost_unit, :selling_cost_pck, :selling_cost_unit, :production_cost, :qty_to_stock, :qty_in_stock, :current_stock_value, :created_by, :restaurante_id)
+      params.require(:product).permit(:name, :qty_measurement, :unit_measurement, :description, :product_type, :buying_cost_pck, :buying_cost_unit, :selling_cost_pck, :selling_cost_unit, :production_cost, :qty_to_stock, :qty_in_stock, :current_stock_value, :created_by, :restaurante_id)
     end
 end
