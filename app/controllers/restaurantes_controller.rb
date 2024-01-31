@@ -64,6 +64,7 @@ class RestaurantesController < ApplicationController
 
   def sell
     @tables = @restaurante.tables
+    @products = @restaurante.products
   end
 
   private
