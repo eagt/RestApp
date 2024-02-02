@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_085550) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_01_104247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "qty"
+    t.integer "total"
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.string "item_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -48,6 +60,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_085550) do
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
     t.index ["product_id"], name: "index_orderables_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total"
+    t.bigint "restaurante_id", null: false
+    t.bigint "table_id", null: false
+    t.string "order_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurante_id"], name: "index_orders_on_restaurante_id"
+    t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -127,12 +150,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_085550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
   add_foreign_key "members", "restaurantes"
   add_foreign_key "members", "users"
   add_foreign_key "menus", "products"
   add_foreign_key "menus", "restaurantes"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
+  add_foreign_key "orders", "restaurantes"
+  add_foreign_key "orders", "tables"
   add_foreign_key "products", "restaurantes"
   add_foreign_key "tables", "restaurantes"
 end

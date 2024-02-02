@@ -19,6 +19,7 @@
 #
 class Table < ApplicationRecord
   belongs_to :restaurante
+  has_many :orders
 
   enum status: { Funcional: 'Funcional', Pidiendo: 'Pidiendo', No_Funcional: 'No Funcional' }
 end

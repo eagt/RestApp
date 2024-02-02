@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+
   resources :restaurantes do 
     member do
-      get 'sell'  # This will create a route for the custom action in the posts controller
+      get 'sell', to: 'restaurantes#sell' # This will create a route for the custom action in the posts controller
     end
     resources :members do
       collection do
@@ -9,9 +10,16 @@ Rails.application.routes.draw do
       end 
     end
     resources :products
-    resources :tables
-    resources :menus
+    resources :tables do
+      resource :orders, only: [:show, :create, :update, :destroy]
+      resources :line_items, only: [:show, :update, :destroy]
+    end 
   end
+
+    #resources :menus
+    ##resources :line_items
+    #resources :orders
+ 
   
   devise_for :users, controllers: {
     confirmations: 'confirmations',
