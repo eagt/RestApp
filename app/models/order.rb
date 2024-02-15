@@ -3,6 +3,7 @@
 # Table name: orders
 #
 #  id             :bigint           not null, primary key
+#  number         :integer
 #  order_status   :string
 #  total          :integer
 #  created_at     :datetime         not null
@@ -20,11 +21,24 @@
 #  fk_rails_...  (restaurante_id => restaurantes.id)
 #  fk_rails_...  (table_id => tables.id)
 #
+#class Order < ApplicationRecord
+#  belongs_to :restaurante
+#  belongs_to :table
+#  has_many :line_items, dependent: :destroy
+#end
+
 class Order < ApplicationRecord
-  belongs_to :restaurante
   belongs_to :table
   has_many :line_items, dependent: :destroy
+
+  enum order_status: { in_progress: 0, taken: 1 }
+
+  after_save :update_status
+
+  private
+
+  def update_status
+    self.taken! if line_items.any?
+  end
 end
-
-
 

@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["value"]  
   connect() {
-    console.log("Cnnnected")
+    console.log("Connected")
   }
 
   //Increment / Decrement on the counter

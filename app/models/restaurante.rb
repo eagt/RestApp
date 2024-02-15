@@ -20,6 +20,7 @@
 class Restaurante < ApplicationRecord
 
     validates :name, presence: true
+    validates :name, uniqueness: true
     
     has_many  :members, dependent: :destroy 
     has_many  :users, through: :members   
@@ -28,6 +29,10 @@ class Restaurante < ApplicationRecord
     has_many :menus, dependent: :destroy 
 
     has_many :orders, dependent: :destroy 
+
+
+
+
        
 end
 

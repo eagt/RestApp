@@ -10,14 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_104247) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_07_200241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "line_items", force: :cascade do |t|
     t.integer "qty"
@@ -41,27 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_104247) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
-  create_table "menus", force: :cascade do |t|
-    t.bigint "restaurante_id", null: false
-    t.string "week_day"
-    t.bigint "product_id", null: false
-    t.string "menu_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_menus_on_product_id"
-    t.index ["restaurante_id"], name: "index_menus_on_restaurante_id"
-  end
-
-  create_table "orderables", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "cart_id", null: false
-    t.integer "qty"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_orderables_on_cart_id"
-    t.index ["product_id"], name: "index_orderables_on_product_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.integer "total"
     t.bigint "restaurante_id", null: false
@@ -69,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_104247) do
     t.string "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
     t.index ["restaurante_id"], name: "index_orders_on_restaurante_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
   end
@@ -154,10 +129,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_104247) do
   add_foreign_key "line_items", "products"
   add_foreign_key "members", "restaurantes"
   add_foreign_key "members", "users"
-  add_foreign_key "menus", "products"
-  add_foreign_key "menus", "restaurantes"
-  add_foreign_key "orderables", "carts"
-  add_foreign_key "orderables", "products"
   add_foreign_key "orders", "restaurantes"
   add_foreign_key "orders", "tables"
   add_foreign_key "products", "restaurantes"

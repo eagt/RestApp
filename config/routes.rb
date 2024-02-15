@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :restaurantes do 
     member do
       get 'sell', to: 'restaurantes#sell' # This will create a route for the custom action in the posts controller
@@ -9,17 +10,12 @@ Rails.application.routes.draw do
         post :invite
       end 
     end
-    resources :products
-    resources :tables do
-      resource :orders, only: [:show, :create, :update, :destroy]
-      resources :line_items, only: [:show, :update, :destroy]
-    end 
-  end
-
-    #resources :menus
-    ##resources :line_items
-    #resources :orders
- 
+    resources :products 
+    resources :tables
+    resources :shops
+    resource :orders
+    resources :line_items, only: [:show, :update, :destroy]  
+  end 
   
   devise_for :users, controllers: {
     confirmations: 'confirmations',
@@ -27,7 +23,7 @@ Rails.application.routes.draw do
   }
 
  
-
+  
   root 'pages#home'
   get 'pages/dashboard'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

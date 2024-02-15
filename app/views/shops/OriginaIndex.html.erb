@@ -1,0 +1,69 @@
+<div data-controller="sell">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 ">
+        <!-- Content for the left card -->
+        <!-- card-top with buttons -->
+        <div class="card p-4">
+          <h3> Top card</h3>
+          <button class='btn btn-mesa', data-action="click->sell#buttonMesas">
+            Mesas
+          </button>
+        </div>
+        <!-- card-top with buttons for all Mesas/Tables -->
+        <div class="card p-4", data-sell-target="displayMesas">
+          <h3> Bottom card 1</h3>
+          <h4>Mesas</h4>
+          <div class="row">
+            <% @tables.each do |table| %>
+              <button class="btn card-mesas text-center pt-2" , data-action="click->sell#buttonProducts" class="table-item" data-table-id="<%= table.id %>">                  
+                <%= table.number%>
+              </button>
+              <%= form_with(model: @order, url: orders_path, method: :post) do |form| %>
+                <%= form.hidden_field :table_id, value: @table.id %>
+                <!-- Additional order form fields can go here -->
+                <%= form.submit "Create Order" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- Products -->
+        <div class="card card_products_section p-4", data-sell-target="displayProducts">
+          <h4>Menu</h4>
+          <div class="row">
+            <% @products.each do |product| %>
+              <div class="card_products" >
+                <div class="card-title text-center pt-2">
+                  <h5><%= product.name %></h5>
+                </div>
+                <div class="card-body card-body-products">
+                  <p class="card-text">Price: <%= number_to_currency(product.selling_cost_unit) %></p>
+                </div>
+                <div class="card-footer card-footer-products rounded-3 p-2 mt-1">
+                  <div class="d-flex justify-content-between align-items-center" data-controller="qty-plus-minus">
+                    <!-- Minus Button -->
+                    <button class="btn btn-danger" data-action="click->qty-plus-minus#decrement">-</button>
+                    <!-- Input Field -->
+                    <input type="text" class="form-control input_qty" value="0" data-qty-plus-minus-target="value">
+                    <!-- Plus Button -->
+                    <button class="btn btn-success" data-action="click->qty-plus-minus#increment">+</button>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <div id="orders-container" data-turbo-frame="orders">
+              <!-- Orders will be dynamically added here -->
+            </div>
+            <!-- Content for the right card -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
