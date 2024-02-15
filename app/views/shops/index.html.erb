@@ -1,0 +1,17 @@
+<h4>Mesas</h4>
+<div class="row">
+  <% @tables.each do |table| %>
+    <%= link_to restaurante_shop_path(@restaurante), method: :post, style: "text-decoration: none; color: inherit;" do %>
+      <div class="card table-item card-mesas">
+        <img src="image.jpg" alt="Image">
+        <div class="card-body text-center">
+          <h5 class="card-title"><%= table.number %></h5>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div id="orders">
+  <h3>Order</h3>
+  <!-- Display the current order here -->
+</div>

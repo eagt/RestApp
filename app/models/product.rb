@@ -32,8 +32,9 @@
 class Product < ApplicationRecord
   
   belongs_to :restaurante
+  has_many :line_items
 
-  # calling all the NUmber transformation on the integer inputs 
+  # calling all the concern for Number parsing for the integer inputs 
   include ProductNumberInput
 
 

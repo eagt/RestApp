@@ -16,9 +16,14 @@
           <h4>Mesas</h4>
           <div class="row">
             <% @tables.each do |table| %>
-              <button class="btn card-mesas text-center pt-2" , data-action="click->sell#buttonProducts">                  
+              <button class="btn card-mesas text-center pt-2" , data-action="click->sell#buttonProducts" class="table-item" data-table-id="<%= table.id %>">                  
                 <%= table.number%>
               </button>
+              <%= form_with(model: @order, url: orders_path, method: :post) do |form| %>
+                <%= form.hidden_field :table_id, value: @table.id %>
+                <!-- Additional order form fields can go here -->
+                <%= form.submit "Create Order" %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -28,7 +33,7 @@
           <div class="row">
             <% @products.each do |product| %>
               <div class="card_products" >
-                <div class="card-title text-center pt-2">  
+                <div class="card-title text-center pt-2">
                   <h5><%= product.name %></h5>
                 </div>
                 <div class="card-body card-body-products">
@@ -42,19 +47,19 @@
                     <input type="text" class="form-control input_qty" value="0" data-qty-plus-minus-target="value">
                     <!-- Plus Button -->
                     <button class="btn btn-success" data-action="click->qty-plus-minus#increment">+</button>
-                  </div>                
+                  </div>
                 </div>
               </div>
             <% end %>
           </div>
         </div>
       </div>
-
-
-        
       <div class="col-sm-4">
         <div class="card">
           <div class="card-body">
+            <div id="orders-container" data-turbo-frame="orders">
+              <!-- Orders will be dynamically added here -->
+            </div>
             <!-- Content for the right card -->
           </div>
         </div>

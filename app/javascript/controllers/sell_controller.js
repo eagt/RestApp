@@ -2,24 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="sell"
 export default class extends Controller {
-  static targets = ["mesasCard", "productsCard"]
-  
+  static targets = ["displayMesas", "displayProducts"]  
 
   connect() {
     console.log("Helllo")
-    this.mesasCardTarget.hidden = true
-    this.productsCardTarget.hidden = true
+    this.displayMesasTarget.hidden = true
+    this.displayProductsTarget.hidden = true
   }
 
-  showMesasCard() {
-    this.mesasCardTarget.hidden = false 
-    this.productsCardTarget.hidden = true   
+  buttonMesas() {
+    this.displayMesasTarget.hidden = false
+    this.displayProductsTarget.hidden = true
   }
 
-  showProductsCard() {
-    this.productsCardTarget.hidden = false   
-    this.mesasCardTarget.hidden = true 
-  }  
-}
-
+  buttonProducts() {
+    this.displayMesasTarget.hidden = true
+    this.displayProductsTarget.hidden = false    
+  }
+}  
 
